@@ -21,7 +21,7 @@ python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<-2> -a13<-1> 
 
 End with an example of getting some data out of the system or using it for a little demo
 
-```
+
 
 ## Authors
 
