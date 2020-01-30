@@ -1,9 +1,8 @@
 from skimage import io, color
-import matplotlib.pyplot as plt
-
 from skimage import exposure
 
 import argparse
+import matplotlib.pyplot as plt
 import numpy as np
 
 def convolve(image, kernel):
