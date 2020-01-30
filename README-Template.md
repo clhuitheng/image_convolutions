@@ -1,13 +1,10 @@
-# Project Title
+# Convolution Operator on input image
 
 This is a project about applying the convolution operation on any input image in Python. 
 
-## Getting Started
-
-
 ### Prerequisites
 
-To run this code, you will need python3. I have used and tested the code using the ClearLinux OS to run this convolution operation on a few input images. Before running the program,we need to make sure that the input image has to be placed with the same path as the image_convolutions.py.
+To run this code, you will need python3 in your local machine. I have used and tested the code using the ClearLinux OS to run this convolution operation on a few input images. Before running the program,we need to make sure that the input image has to be placed with the same path as the image_convolutions.py.
 
 ### Steps to run
 In this program, the project scope confine to a single channel image only which is the input image in greyscale.
