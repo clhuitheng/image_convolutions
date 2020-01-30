@@ -18,11 +18,3 @@ Image convolution operation with Sobel Y Kernel:
 ```
 python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<-2> -a13<-1> -a21<0> -a22<0> -a23<0> -a31<1> -a32<2> -a33<1>
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-
-
-## Authors
-
-* **Chew Leong Hui Theng** - *Initial work* -(https://github.com/clhuitheng/image_convolutions)
