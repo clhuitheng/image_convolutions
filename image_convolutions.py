@@ -1,39 +1,67 @@
 from skimage import io, color
 from skimage import exposure
 
-import argparse
 import matplotlib.pyplot as plt
+import argparse
 import numpy as np
 
-def convolve(image, kernel):
-    # This function takes in 2 arguments which are the input image and kernel
-    # and returns the convolution of them
-    # Args:
-    #    image: a numpy array of size [image_height, image_width].
-    #    kernel: a numpy array of size [kernel_height, kernel_width].
-    # Returns:
-    #    a numpy array of size [image_height, image_width] (convolution output)
+class PlotImage:
+    def __init__(self, image):
+        self.image = image
 
-    # the dimensions of input image
-    (iH, iW) = image.shape[:2]
+    def ShowTitle(self, title):
+        plt.title(title)
+        plt.imshow(image.GetCurrentImage(), cmap=plt.cm.gray)
+        plt.axis('off')
+        plt.show()
 
-    # the dimensions of kernel
-    (kH, kW) = kernel.shape[:2]
+class InputImage:
+    # constructor
+    def __init__(self, imagepath):
+        self.image = io.imread(imagepath)
 
-    # convolution output
-    output = np.zeros_like(image)
+    def ConvertToGrayScale(self):
+      # Convert the image to grayscale (1 channel)
+      self.image = color.rgb2gray(self.image)
 
-    # Add zero padding to the input image
-    image_padded = np.zeros((iH + 2, iW + 2))
+    def GetCurrentImage(self):
+        return self.image
 
-    image_padded[1:-1, 1:-1] = image
+    def GenerateZerosLikeImage(self):
+        return np.zeros_like(self.image)
 
-    # Loop over every pixel of the image
-    for x in range(iW):
-        for y in range(iH):
-            # element-wise multiplication of the kernel and the image
-            output[y, x] = (kernel * image_padded[y:y + 3, x:x + 3]).sum()
-    return output
+    def GeneratePaddedImage(self, iH, iW):
+        image_padded = np.zeros((iH + 2, iW + 2))
+        image_padded[1:-1, 1:-1] = self.image
+
+        return image_padded
+
+    def Convolve(self, kernel):
+        # the dimensions of input image
+        (iH, iW) = self.image.shape[:2]
+
+        # the dimensions of kernel
+        (kH, kW) = kernel.shape[:2]
+
+        # convolution output
+        output = self.GenerateZerosLikeImage()
+
+        # Add zero padding to the input image
+        image_padded = self.GeneratePaddedImage(iH, iW)
+
+        # Loop over every pixel of the image
+        for x in range(iW):
+            for y in range(iH):
+                # element-wise multiplication of the kernel and the image
+                output[y, x] = (kernel * image_padded[y:y + 3, x:x + 3]).sum()
+
+        self.image = output
+        return output
+
+    def ApplyHistogramEqualization(self):
+      self.image = exposure.equalize_adapthist(self.image /
+                                               np.max(np.abs(self.image)),
+                                               clip_limit=0.03)
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -61,24 +89,18 @@ kernel = np.array((
 
 print("[INFO] Applying Kernel: ", kernel)
 
-# Load the input image
-image = io.imread(args['image'])
+image = InputImage(args['image'])
 
 # Convert the image to grayscale (1 channel)
-image = color.rgb2gray(image)
+image.ConvertToGrayScale()
 
-convolveOutput = convolve(image, kernel)
+# Apply Convolution
+image.Convolve(kernel)
 
 # Plot the filtered image
-plt.title("convolveOutput")
-plt.imshow(convolveOutput, cmap=plt.cm.gray)
-plt.axis('off')
-plt.show()
+imageGraph = PlotImage(image)
+imageGraph.ShowTitle("ConvolveOutput")
 
 # Adjust the contrast of the filtered image by applying Histogram Equalization
-image_sharpen_equalized = exposure.equalize_adapthist(
-    convolveOutput / np.max(np.abs(convolveOutput)), clip_limit=0.03)
-plt.title("image_sharpen_equalized")
-plt.imshow(image_sharpen_equalized, cmap=plt.cm.gray)
-plt.axis('off')
-plt.show()
+image.ApplyHistogramEqualization()
+imageGraph.ShowTitle("image_sharpen_equalized")
