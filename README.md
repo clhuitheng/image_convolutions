@@ -12,9 +12,22 @@ The kernel size is fixed of 3x3, the fixed kernel stride of 1x1, same padding.
 
 Image convolution operation with Sobel X Kernel using the command below:
 ```
-python3 image_convolutions.py --image <image01.png> -a11 <1> -a12<0> -a13<1> -a21<-2> -a22<0> -a23<2> -a31<1> -a32<0> -a33<1>
+python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<0> -a13<1> -a21<-2> -a22<0> -a23<2> -a31<-1> -a32<0> -a33<1>
 ```
 Image convolution operation with Sobel Y Kernel:
 ```
-python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<-2> -a13<-1> -a21<0> -a22<0> -a23<0> -a31<1> -a32<2> -a33<1>
+python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<-2> -a13<1> -a21<0> -a22<0> -a23<0> -a31<1> -a32<2> -a33<1>
 ```
+
+### References
+1. Understanding Edge Detection Sobel Operator https://medium.com/datadriveninvestor/understanding-edge-detection-sobel-operator-2aada303b900
+
+2. Sobel Operator https://www.tutorialspoint.com/dip/sobel_operator.htm
+
+3. Adaptive Histogram Equalization https://en.wikipedia.org/wiki/Adaptive_histogram_equalization#Contrast_Limited_AHE
+
+4. Histogram Equalization https://en.wikipedia.org/wiki/Histogram_equalization
+
+5. Convolution Operation https://towardsdatascience.com/acomprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53 
+
+6. Object Oriented Programming https://realpython.com/python3-object-oriented-programming/
