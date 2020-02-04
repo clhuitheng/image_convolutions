@@ -12,10 +12,8 @@ The kernel size is fixed of 3x3, the fixed kernel stride of 1x1, same padding.
 
 Let's consider we are going to perform convolution on image,frame07.png with a 
 
-Sobel X Kernel: [-1 0 1
-
+Sobel X Kernel: [-1 0 1 
                  -2 0 2
-                 
                  -1 0 1]
 
 Image convolution operation with Sobel X Kernel using the command below:
