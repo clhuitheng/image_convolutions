@@ -10,10 +10,23 @@ In this program, the project scope confine to a single channel image only which 
 
 The kernel size is fixed of 3x3, the fixed kernel stride of 1x1, same padding.
 
+Let's consider we are going to perform convolution on image,frame07.png with a 
+
+Sobel X Kernel: [-1 0 1
+                 -2 0 2
+                 -1 0 1]
+
 Image convolution operation with Sobel X Kernel using the command below:
 ```
-python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<0> -a13<1> -a21<-2> -a22<0> -a23<2> -a31<-1> -a32<0> -a33<1>
+python3 image_convolutions.py --image <frame07.png> -a11 <-1> -a12<0> -a13<1> -a21<-2> -a22<0> -a23<2> -a31<-1> -a32<0> -a33<1>
 ```
+
+Let's consider we are going to perform convolution on image,frame07.png with a 
+
+Sobel Y Kernel: [-1 -2 1
+                 0 0 0
+                 1 2 1]
+
 Image convolution operation with Sobel Y Kernel:
 ```
 python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<-2> -a13<1> -a21<0> -a22<0> -a23<0> -a31<1> -a32<2> -a33<1>
