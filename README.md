@@ -31,3 +31,5 @@ python3 image_convolutions.py --image <image01.png> -a11 <-1> -a12<-2> -a13<1> -
 5. Convolution Operation https://towardsdatascience.com/acomprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53 
 
 6. Object Oriented Programming https://realpython.com/python3-object-oriented-programming/
+
+
